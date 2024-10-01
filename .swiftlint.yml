@@ -1,0 +1,27 @@
+disabled_rules:
+  - trailing_comma
+opt_in_rules:
+  - closure_spacing
+  - empty_count
+  - fatal_error_message
+  - overridden_super_call
+  - private_outlet
+  - redundant_nil_coalescing
+  - vertical_whitespace_closing_braces
+line_length:
+  warning: 160
+  error: 220
+function_body_length:
+  warning: 80
+  error: 150
+type_body_length:
+  warning: 400
+  error: 600
+file_length:
+  warning: 500
+  error: 900
+identifier_name:
+  min_length: 2
+excluded:
+  - .build
+  - DerivedData

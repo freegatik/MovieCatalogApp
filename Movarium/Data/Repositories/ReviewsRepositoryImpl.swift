@@ -1,0 +1,29 @@
+//
+//  ReviewsRepositoryImpl.swift
+//  Movarium
+//
+//  Created by Anton Solovev on 09.10.2024.
+//
+
+class ReviewsRepositoryImpl: ReviewsRepository {
+    private let httpClient: HTTPClient
+    
+    init(httpClient: HTTPClient) {
+        self.httpClient = httpClient
+    }
+    
+    func addReview(movieID: String, request: ReviewRequest) async throws {
+        let endpoint = AddReviewEndpoint(movieID: movieID)
+        try await httpClient.sendRequestWithoutResponse(endpoint: endpoint, requestBody: request)
+    }
+    
+    func editReview(movieID: String, reviewID: String, request: ReviewRequest) async throws {
+        let endpoint = EditReviewEndpoint(movieID: movieID, reviewID: reviewID)
+        try await httpClient.sendRequestWithoutResponse(endpoint: endpoint, requestBody: request)
+    }
+    
+    func deleteReview(movieID: String, reviewID: String) async throws {
+        let endpoint = DeleteReviewEndpoint(movieID: movieID, reviewID: reviewID)
+        try await httpClient.sendRequestWithoutResponse(endpoint: endpoint, requestBody: nil as EmptyRequestModel?)
+    }
+}

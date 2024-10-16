@@ -1,0 +1,63 @@
+//
+//  GetAllMoviesUseCase.swift
+//  Movarium
+//
+//  Created by Anton Solovev on 15.10.2024.
+//
+
+protocol GetAllMoviesUseCase {
+    func execute() async throws -> [MovieElementModel]?
+    func loadInitialMovies() async throws -> [MovieElementModel]
+}
+
+class GetAllMoviesUseCaseImpl: GetAllMoviesUseCase {
+    private let repository: GetMoviesRepository
+    
+    // отсчет начинается с 4 страницы, так как первые 3 страницы прогружаются через loadInitialMovies()
+    private var currentPage = 4
+    
+    init(repository: GetMoviesRepository) {
+        self.repository = repository
+    }
+    
+    static func create() -> GetAllMoviesUseCaseImpl {
+        let httpClient = AlamofireHTTPClient(baseURL: .kreosoft)
+        let repository = GetMoviesRepositoryImpl(httpClient: httpClient)
+        return GetAllMoviesUseCaseImpl(repository: repository)
+    }
+    
+    func execute() async throws -> [MovieElementModel]? {
+        let pagedResponse = try await loadNextPage()
+        currentPage += 1
+        
+        if currentPage == 6, let movies = pagedResponse.movies {
+            return Array(movies.dropLast())
+        }
+        
+        return pagedResponse.movies
+    }
+    
+    func loadInitialMovies() async throws -> [MovieElementModel] {
+        var initialMoviesBuffer: [MovieElementModel] = []
+        
+        let firstPageResponse = try await repository.getMovies(page: 1)
+        if let lastMovieFromFirstPage = firstPageResponse.movies?.last {
+            initialMoviesBuffer.append(lastMovieFromFirstPage)
+        }
+        
+        let secondPageResponse = try await repository.getMovies(page: 2)
+        let thirdPageResponse = try await repository.getMovies(page: 3)
+        
+        if let moviesFromSecondPage = secondPageResponse.movies {
+            initialMoviesBuffer.append(contentsOf: moviesFromSecondPage)
+        }
+        if let moviesFromThirdPage = thirdPageResponse.movies {
+            initialMoviesBuffer.append(contentsOf: moviesFromThirdPage)
+        }
+        return initialMoviesBuffer
+    }
+    
+    private func loadNextPage() async throws -> MoviesPagedListResponseModel {
+        return try await repository.getMovies(page: currentPage)
+    }
+}

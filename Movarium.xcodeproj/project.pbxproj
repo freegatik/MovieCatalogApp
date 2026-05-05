@@ -168,11 +168,14 @@
 		E2B1AA022F00000100A4F82C /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B1AA012F00000100A4F82C /* AppError.swift */; };
 		E2B1AA042F00000100A4F82C /* ApplicationSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B1AA032F00000100A4F82C /* ApplicationSupport.swift */; };
 		E2B1AA062F00000100A4F82C /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = E2B1AA052F00000100A4F82C /* PrivacyInfo.xcprivacy */; };
+		AA0000022F11111100ABCDEF /* ModelMappings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000012F11111100ABCDEF /* ModelMappings.swift */; };
 		63FC1E8848EF4056B8CBBC65 /* SignInUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08378900E62C462B9AD27D44 /* SignInUseCaseTests.swift */; };
 		948A4BAAF43749DE89855BD6 /* GetMoviesUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBF5925D8504C118494375D /* GetMoviesUseCaseTests.swift */; };
 		93FE175067BB4371ABD7B0CF /* LogoutUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6586D3D362F84CF5972532DC /* LogoutUseCaseTests.swift */; };
 		5403AF0B0761459B8D257401 /* ArrayExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9244AE4783BF44C79D1ABBFA /* ArrayExtensionsTests.swift */; };
 		CF5D9EED4A4448708DE9CCCB /* AppErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99D228FF4154461BB1352FC8 /* AppErrorTests.swift */; };
+		AA0000042F11111100ABCDEF /* ModelMappingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000032F11111100ABCDEF /* ModelMappingsTests.swift */; };
+		AA0000062F11111100ABCDEF /* AlamofireHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000052F11111100ABCDEF /* AlamofireHTTPClientTests.swift */; };
 		3637AE55B99340B89CD1F60A /* MovariumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CC19180ED4454AF84D036 /* MovariumUITests.swift */; };
 /* End PBXBuildFile section */
 
@@ -335,6 +338,7 @@
 		E2B1AA012F00000100A4F82C /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		E2B1AA032F00000100A4F82C /* ApplicationSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationSupport.swift; sourceTree = "<group>"; };
 		E2B1AA052F00000100A4F82C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		AA0000012F11111100ABCDEF /* ModelMappings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMappings.swift; sourceTree = "<group>"; };
 		436C4106097C4FECB180668D /* MovariumTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovariumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD499E0076CF441C8FD70C9C /* MovariumUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovariumUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08378900E62C462B9AD27D44 /* SignInUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUseCaseTests.swift; sourceTree = "<group>"; };
@@ -342,6 +346,8 @@
 		6586D3D362F84CF5972532DC /* LogoutUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutUseCaseTests.swift; sourceTree = "<group>"; };
 		9244AE4783BF44C79D1ABBFA /* ArrayExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensionsTests.swift; sourceTree = "<group>"; };
 		99D228FF4154461BB1352FC8 /* AppErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppErrorTests.swift; sourceTree = "<group>"; };
+		AA0000032F11111100ABCDEF /* ModelMappingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelMappingsTests.swift; sourceTree = "<group>"; };
+		AA0000052F11111100ABCDEF /* AlamofireHTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireHTTPClientTests.swift; sourceTree = "<group>"; };
 		E82CC19180ED4454AF84D036 /* MovariumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovariumUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -748,6 +754,7 @@
 				FC1DC3AD2CC533F200FF55F4 /* MoviesPagedListResponseModel.swift */,
 				FCED51702CD01285007BB8CA /* MovieListResponseModel.swift */,
 				FC399CE72CCB871800AAE6DD /* UserDataModel.swift */,
+				AA0000012F11111100ABCDEF /* ModelMappings.swift */,
 				FC1DC3B72CC5403F00FF55F4 /* EmptyRequestModel.swift */,
 				FCFCD3F82CD3EC4A0062E472 /* MovieDetailsModel.swift */,
 				FC639D352CD64B2B007F4FB8 /* KinopoiskDetailsModel.swift */,
@@ -847,6 +854,8 @@
 				6586D3D362F84CF5972532DC /* LogoutUseCaseTests.swift */,
 				9244AE4783BF44C79D1ABBFA /* ArrayExtensionsTests.swift */,
 				99D228FF4154461BB1352FC8 /* AppErrorTests.swift */,
+				AA0000032F11111100ABCDEF /* ModelMappingsTests.swift */,
+				AA0000052F11111100ABCDEF /* AlamofireHTTPClientTests.swift */,
 			);
 			path = MovariumTests;
 			sourceTree = "<group>";
@@ -1161,6 +1170,7 @@
 				FC1DC3A82CC3C44E00FF55F4 /* ProfileViewController.swift in Sources */,
 				FCF7D8E52CB9931200A4F82C /* CustomTextField.swift in Sources */,
 				FCD6ACE42CD523CA00DF87E9 /* LoaderSUI.swift in Sources */,
+				AA0000022F11111100ABCDEF /* ModelMappings.swift in Sources */,
 				FCED51672CCFD9FA007BB8CA /* FavoriteMoviesRepositoryImpl.swift in Sources */,
 				FC1DC3932CC3BB5800FF55F4 /* SignInUseCase.swift in Sources */,
 				FC1DC3AC2CC52DC200FF55F4 /* FeedViewModel.swift in Sources */,
@@ -1184,6 +1194,8 @@
 				93FE175067BB4371ABD7B0CF /* LogoutUseCaseTests.swift in Sources */,
 				5403AF0B0761459B8D257401 /* ArrayExtensionsTests.swift in Sources */,
 				CF5D9EED4A4448708DE9CCCB /* AppErrorTests.swift in Sources */,
+				AA0000042F11111100ABCDEF /* ModelMappingsTests.swift in Sources */,
+				AA0000062F11111100ABCDEF /* AlamofireHTTPClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

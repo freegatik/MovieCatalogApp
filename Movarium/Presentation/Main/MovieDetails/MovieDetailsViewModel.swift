@@ -200,42 +200,9 @@ class MovieDetailsViewModel: ObservableObject {
     }
     
     private func mapToMovieDetails(_ movie: MovieDetailsModel) -> MovieDetails {
-        let genres: [GenreDetails] = movie.genres?.compactMap { genre in
-            guard let genre = genre else { return nil }
-            return GenreDetails(id: genre.id, name: genre.name ?? SC.empty)
-        } ?? []
-        
-        let reviews: [ReviewDetails] = movie.reviews?.compactMap { review in
-            guard let review = review else { return nil }
-            return ReviewDetails(
-                id: review.id,
-                rating: review.rating,
-                reviewText: review.reviewText ?? SC.empty,
-                isAnonymous: review.isAnonymous,
-                createDateTime: review.createDateTime,
-                author: AuthorDetails(
-                    userId: review.author?.userId ?? SC.empty,
-                    nickName: review.author?.nickName ?? Constants.anonymusUser,
-                    avatar: review.author?.avatar ?? Constants.avatarLink
-                )
-            )
-        } ?? []
-        
-        return MovieDetails(
-            id: movie.id,
-            name: movie.name ?? SC.empty,
-            poster: movie.poster ?? SC.empty,
-            year: movie.year,
-            country: movie.country ?? SC.empty,
-            genres: genres,
-            reviews: reviews,
-            time: movie.time,
-            tagline: movie.tagline ?? SC.empty,
-            description: movie.description ?? SC.empty,
-            director: movie.director ?? SC.empty,
-            budget: movie.budget ?? 0,
-            fees: movie.fees ?? 0,
-            ageLimit: movie.ageLimit
+        return movie.toDomain(
+            defaultAnonymousName: Constants.anonymusUser,
+            defaultAvatarURL: Constants.avatarLink
         )
     }
 

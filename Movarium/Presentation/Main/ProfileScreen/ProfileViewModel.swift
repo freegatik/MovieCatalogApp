@@ -152,27 +152,11 @@ final class ProfileViewModel {
     }
     
     private func mapToUserData(_ userDataResponse: UserDataResponseModel) -> UserData {
-        return UserData(
-            id: userDataResponse.id,
-            username: userDataResponse.nickName,
-            email: userDataResponse.email,
-            profileImageURL: userDataResponse.avatarLink ?? Constants.profileImageBaseURL,
-            name: userDataResponse.name,
-            birthDate: userDataResponse.birthDate,
-            gender: Gender(rawValue: userDataResponse.gender) ?? .male
-        )
+        return userDataResponse.toDomain(defaultProfileImageURL: Constants.profileImageBaseURL)
     }
     
     private func mapToUserDataRequestModel(_ userData: UserData) -> UserDataRequestModel {
-        return UserDataRequestModel(
-            id: userData.id,
-            nickName: userData.username,
-            email: userData.email,
-            avatarLink: userData.profileImageURL,
-            name: userData.name,
-            birthDate: userData.birthDate,
-            gender: userData.gender.rawValue
-        )
+        return userData.toRequestModel()
     }
 }
 

@@ -19,10 +19,20 @@ final class AlamofireHTTPClient: HTTPClient, @unchecked Sendable {
     }
     
     private let baseURL: BaseURL
-    let keychain = Keychain()
+    private let session: Session
+    private let keychain: Keychain
+    private let notificationCenter: NotificationCenter
     
-    init(baseURL: BaseURL) {
+    init(
+        baseURL: BaseURL,
+        session: Session = AF,
+        keychain: Keychain = Keychain(),
+        notificationCenter: NotificationCenter = .default
+    ) {
         self.baseURL = baseURL
+        self.session = session
+        self.keychain = keychain
+        self.notificationCenter = notificationCenter
     }
     
     func sendRequest<T: Decodable, U: Encodable>(endpoint: APIEndpoint, requestBody: U? = nil) async throws -> T {
@@ -32,7 +42,7 @@ final class AlamofireHTTPClient: HTTPClient, @unchecked Sendable {
         
         let box = CallbackBox(self)
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: method, parameters: requestBody, encoder: JSONParameterEncoder.default, headers: headers)
+            session.request(url, method: method, parameters: requestBody, encoder: JSONParameterEncoder.default, headers: headers)
                 .validate()
                 .response { response in
                     box.logResponse(response)
@@ -59,7 +69,7 @@ final class AlamofireHTTPClient: HTTPClient, @unchecked Sendable {
         
         let box = CallbackBox(self)
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: method, parameters: requestBody, encoder: JSONParameterEncoder.default, headers: headers)
+            session.request(url, method: method, parameters: requestBody, encoder: JSONParameterEncoder.default, headers: headers)
                 .validate()
                 .response { response in
                     switch response.result {
@@ -83,7 +93,7 @@ final class AlamofireHTTPClient: HTTPClient, @unchecked Sendable {
             AppLog.auth.error("Keychain remove failed: \(String(describing: error))")
         }
         
-        NotificationCenter.default.post(name: .unauthorizedErrorOccurred, object: nil)
+        notificationCenter.post(name: .unauthorizedErrorOccurred, object: nil)
     }
 }
 
